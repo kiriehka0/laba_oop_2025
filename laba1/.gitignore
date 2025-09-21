@@ -1,3 +1,42 @@
+# --- CMake Build Files ---
+build/
+Build/
+cmake-build-*/
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+*.ninja
+*.ninja_deps
+
+# --- IDE and Editor Files ---
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+
+# --- OS Specific Files ---
+# macOS
+.DS_Store
+._.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+[Dd]esktop.ini
+
+# --- Backup Files ---
+*~
+*.swp
+*.swo
+
+# ========== СУЩЕСТВУЮЩЕЕ СОДЕРЖИМОЕ (НЕ УДАЛЯТЬ!) ==========
 # Prerequisites
 *.d
 
