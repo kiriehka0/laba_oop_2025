@@ -89,7 +89,7 @@ Binary& Binary::operator=(Binary&& other) noexcept {
 }
 
 // Сложение
-Binary Binary::add(const Binary& other) const {
+Binary Binary::plus(const Binary& other) const {
     if (size != other.size) {
         throw std::invalid_argument("Binary numbers must have the same size");
     }
@@ -105,7 +105,7 @@ Binary Binary::add(const Binary& other) const {
 }
 
 // Вычитание
-Binary Binary::subtract(const Binary& other) const {
+Binary Binary::minus(const Binary& other) const {
     if (size != other.size) {
         throw std::invalid_argument("Binary numbers must have the same size");
     }
@@ -126,7 +126,7 @@ Binary Binary::subtract(const Binary& other) const {
 }
 
 // Копирование
-Binary Binary::copyBinary() const {
+Binary Binary::copy() const {
     return Binary(*this);
 }
 
