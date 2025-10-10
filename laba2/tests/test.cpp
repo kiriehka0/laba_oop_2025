@@ -45,7 +45,7 @@ TEST(BinaryArithmeticTest, Addition) {
     Binary b1{1, 1, 0, 0};
     Binary b2{0, 1, 0, 1};
     
-    Binary sum = b1.add(b2);
+    Binary sum = b1.plus(b2);
     EXPECT_EQ(sum.toString(), "1101");  // Исправлено ожидание!
 }
 
@@ -56,13 +56,13 @@ TEST(BinaryArithmeticTest, Subtraction) {
     Binary b1{1, 1, 0, 0};
     Binary b2{0, 1, 0, 1};
     
-    Binary diff = b1.subtract(b2);
+    Binary diff = b1.minus(b2);
     EXPECT_EQ(diff.toString(), "1001");  // Исправлено ожидание!
 }
 
 TEST(BinaryArithmeticTest, Copy) {
     Binary b1{1, 1, 0, 0};
-    Binary copy = b1.copyBinary();
+    Binary copy = b1.copy();
     
     EXPECT_EQ(copy.toString(), "0011");  // Исправлено ожидание!
     EXPECT_TRUE(b1.equals(copy));
@@ -72,7 +72,7 @@ TEST(BinaryArithmeticTest, AdditionWithOverflow) {
     Binary b1{1, 1, 1, 1};  // "1111" (15)
     Binary b2{0, 0, 0, 1};  // "1000" (8)
     
-    Binary sum = b1.add(b2);
+    Binary sum = b1.plus(b2);
     EXPECT_EQ(sum.toString(), "0111");  // 15 + 8 = 23, но 23 mod 16 = 7 (0111)
 }
 
@@ -108,8 +108,8 @@ TEST(BinaryImmutabilityTest, OriginalUnchangedAfterOperations) {
     std::string originalString = original.toString();
     
     Binary copy = original.copyBinary();
-    Binary sum = original.add(Binary(4, 1));
-    Binary diff = original.subtract(Binary(4, 1));
+    Binary sum = original.plus(Binary(4, 1));
+    Binary diff = original.minus(Binary(4, 1));
     
     EXPECT_EQ(original.toString(), originalString);
     EXPECT_TRUE(original.equals(copy));
@@ -154,7 +154,7 @@ TEST(BinaryExceptionTest, DifferentSizesInOperations) {
     Binary b2(5, 1);
     
     try {
-        Binary sum = b1.add(b2);
+        Binary sum = b1.plus(b2);
         FAIL() << "Expected std::invalid_argument";
     } catch (const std::invalid_argument&) {
         SUCCEED();
