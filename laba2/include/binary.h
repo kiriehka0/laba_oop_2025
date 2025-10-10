@@ -26,9 +26,9 @@ public:
     Binary& operator=(const Binary& other);
     Binary& operator=(Binary&& other) noexcept;
 
-    Binary add(const Binary& other) const;
-    Binary subtract(const Binary& other) const;
-    Binary copyBinary() const;
+    Binary plus(const Binary& other) const;
+    Binary minus(const Binary& other) const;
+    Binary copy() const;
 
     bool equals(const Binary& other) const;
     bool less(const Binary& other) const;
