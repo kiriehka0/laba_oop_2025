@@ -1,0 +1,17 @@
+build/
+*.o
+*.a
+*.so
+
+binary_app
+test_binary
+
+.vscode/
+.idea/
+*.swp
+*.swo
+
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
