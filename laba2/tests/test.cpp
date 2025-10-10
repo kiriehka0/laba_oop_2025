@@ -49,11 +49,20 @@ TEST(BinaryTest, Immutability) {
     EXPECT_TRUE(original.equals(copy));  // Оригинал не изменился
 }
 
-// Тесты исключений
+// Тесты исключений - исправленный синтаксис
 TEST(BinaryTest, Exceptions) {
-    EXPECT_THROW(Binary(0, 1), std::invalid_argument);
-    EXPECT_THROW(Binary{0, 1, 2}, std::invalid_argument);
-    EXPECT_THROW(Binary("102"), std::invalid_argument);
+    // Правильный синтаксис EXPECT_THROW
+    EXPECT_THROW({
+        Binary b(0, 1);
+    }, std::invalid_argument);
+    
+    EXPECT_THROW({
+        Binary b{0, 1, 2};
+    }, std::invalid_argument);
+    
+    EXPECT_THROW({
+        Binary b("102");
+    }, std::invalid_argument);
 }
 
 int main(int argc, char **argv) {
