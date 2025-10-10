@@ -107,7 +107,7 @@ TEST(BinaryImmutabilityTest, OriginalUnchangedAfterOperations) {
     Binary original{1, 0, 1, 0};  // "0101" (5)
     std::string originalString = original.toString();
     
-    Binary copy = original.copyBinary();
+    Binary copy = original.copy();
     Binary sum = original.plus(Binary(4, 1));
     Binary diff = original.minus(Binary(4, 1));
     
