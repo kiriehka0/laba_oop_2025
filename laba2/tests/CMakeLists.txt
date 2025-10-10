@@ -1,6 +1,4 @@
 # Настройка тестов
-find_package(GTest QUIET)
-
 if(GTest_FOUND)
     message(STATUS "GTest found, building tests")
     
@@ -8,7 +6,7 @@ if(GTest_FOUND)
     add_executable(test_binary test.cpp)
     
     # Линкуем с основным проектом и GTest
-    target_link_libraries(test_binary BinaryLib gtest gtest_main)
+    target_link_libraries(test_binary BinaryLib GTest::GTest GTest::Main)
     
     # Добавляем тест в CTest
     add_test(NAME BinaryTests COMMAND test_binary)
