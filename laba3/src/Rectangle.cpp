@@ -5,6 +5,19 @@
 
 Rectangle::Rectangle() : vertices(4) {}
 
+Rectangle::Rectangle(double width, double height) {
+    if (width <= 0 || height <= 0) {
+        throw std::invalid_argument("Width and height must be positive");
+    }
+    
+    vertices = {
+        Point(0, 0),
+        Point(width, 0),
+        Point(width, height),
+        Point(0, height)
+    };
+}
+
 Rectangle::Rectangle(const Point& center, double width, double height) {
     if (width <= 0 || height <= 0) {
         throw std::invalid_argument("Width and height must be positive");
@@ -69,16 +82,18 @@ void Rectangle::readData(std::istream& is) {
     
     double second, third, fourth;
     if (is >> second >> third >> fourth) {
-        // Это центр, ширина и высота
+        // Четыре числа: centerX, centerY, width, height
         *this = Rectangle(Point(first, second), third, fourth);
     } else {
-        // Это нижний левый угол, ширина и высота
+        // Одно или два числа
         is.clear();
-        double width, height;
-        if (is >> width >> height) {
-            *this = Rectangle(Point(first, 0), width, height);
+        double height;
+        if (is >> height) {
+            // Два числа: width, height
+            *this = Rectangle(first, height);
         } else {
-            throw std::runtime_error("Invalid input format for rectangle");
+            // Одно число: width (создаем квадрат)
+            *this = Rectangle(first, first);
         }
     }
 }
