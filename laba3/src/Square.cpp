@@ -166,3 +166,15 @@ Square& Square::operator=(Square&& other) noexcept {
     }
     return *this;
 }
+// ДОБАВИТЬ В КОНЕЦ ФАЙЛА:
+bool Square::operator==(const Figure& other) const {
+    const Square* otherSquare = dynamic_cast<const Square*>(&other);
+    if (!otherSquare) return false;
+    
+    for (size_t i = 0; i < vertices.size(); ++i) {
+        if (!(vertices[i] == otherSquare->vertices[i])) {
+            return false;
+        }
+    }
+    return true;
+}
