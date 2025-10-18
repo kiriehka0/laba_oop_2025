@@ -1,14 +1,13 @@
 cmake_minimum_required(VERSION 3.10)
-project(FiguresProject)
+project(laba3)  # Явно указываем имя
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Явное указание путей включения
-include_directories(${CMAKE_SOURCE_DIR}/include)
+include_directories(include)
 
 # Основная программа
-add_executable(figures_project
+add_executable(laba3  # То же имя что и проект
     src/Figure.cpp
     src/Triangle.cpp
     src/Square.cpp
@@ -17,12 +16,12 @@ add_executable(figures_project
     src/main.cpp
 )
 
-target_compile_options(figures_project PRIVATE -Wall -Wextra -Wpedantic)
+target_compile_options(laba3 PRIVATE -Wall -Wextra -Wpedantic)
 
 # Тесты
 enable_testing()
 
-add_executable(test_figures
+add_executable(tests
     tests/test_figures.cpp
     src/Figure.cpp
     src/Triangle.cpp
@@ -33,6 +32,6 @@ add_executable(test_figures
 
 # GTest
 find_package(GTest REQUIRED)
-target_link_libraries(test_figures GTest::gtest GTest::gtest_main pthread)
+target_link_libraries(tests GTest::gtest GTest::gtest_main pthread)
 
-add_test(NAME FiguresTests COMMAND test_figures)
+add_test(NAME AllTests COMMAND tests)
