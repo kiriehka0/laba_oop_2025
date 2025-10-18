@@ -82,6 +82,19 @@ std::shared_ptr<Figure> Triangle::clone() const {
     return std::make_shared<Triangle>(*this);
 }
 
+bool Triangle::operator==(const Figure& other) const {
+    const Triangle* otherTriangle = dynamic_cast<const Triangle*>(&other);
+    if (!otherTriangle) return false;
+    
+    // Сравниваем вершины
+    for (size_t i = 0; i < vertices.size(); ++i) {
+        if (!(vertices[i] == otherTriangle->vertices[i])) {
+            return false;
+        }
+    }
+    return true;
+}
+
 bool Triangle::isValid() const {
     if (vertices.size() != 3) return false;
     
