@@ -1,4 +1,4 @@
-#include "Figure.h"
+#include "../include/Figure.h"
 
 std::ostream& operator<<(std::ostream& os, const Figure& figure) {
     figure.printVertices(os);
