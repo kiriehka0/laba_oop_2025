@@ -31,6 +31,7 @@ public:
     void printInfo(std::ostream& os) const override;
     
     double getSide() const;
+    bool operator==(const Figure& other) const override;
     
 private:
     void validateSquare() const;
