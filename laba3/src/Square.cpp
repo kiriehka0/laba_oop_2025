@@ -17,14 +17,32 @@ Square::Square(const Point& center, double side) {
     };
 }
 
-Square::Square(const Point& bottomLeft, double side) {
+Square::Square(double side) {
     if (side <= 0) throw std::invalid_argument("Side must be positive");
     
     vertices = {
+        Point(0, 0),
+        Point(side, 0),
+        Point(side, side),
+        Point(0, side)
+    };
+}
+
+Square::Square(const Point& bottomLeft, double width, double height) {
+    if (width <= 0 || height <= 0) {
+        throw std::invalid_argument("Width and height must be positive");
+    }
+    
+    // Для квадрата width и height должны быть равны
+    if (std::abs(width - height) > 1e-9) {
+        throw std::invalid_argument("For square, width and height must be equal");
+    }
+    
+    vertices = {
         bottomLeft,
-        Point(bottomLeft.x + side, bottomLeft.y),
-        Point(bottomLeft.x + side, bottomLeft.y + side),
-        Point(bottomLeft.x, bottomLeft.y + side)
+        Point(bottomLeft.x + width, bottomLeft.y),
+        Point(bottomLeft.x + width, bottomLeft.y + height),
+        Point(bottomLeft.x, bottomLeft.y + height)
     };
 }
 
@@ -35,6 +53,7 @@ Square::Square(const std::vector<Point>& vertices) : vertices(vertices) {
     validateSquare();
 }
 
+// Остальной код оставить без изменений...
 Point Square::calculateCenter() const {
     double centerX = 0, centerY = 0;
     for (const auto& vertex : vertices) {
@@ -66,20 +85,23 @@ void Square::readData(std::istream& is) {
     // Пытаемся прочитать второе число
     double second;
     if (is >> second) {
-        // Есть второе число - это центр и сторона
+        // Есть второе число - это может быть центр или нижний левый угол
         double third;
         if (is >> third) {
+            // Три числа: centerX, centerY, side
             *this = Square(Point(first, second), third);
         } else {
-            throw std::runtime_error("Invalid input format for square");
+            // Два числа: side только
+            *this = Square(first);
         }
     } else {
-        // Нет второго числа - это нижний левый угол и сторона
+        // Одно число: side только
         is.clear();
-        *this = Square(Point(0, 0), first);
+        *this = Square(first);
     }
 }
 
+// Остальные методы без изменений...
 Square::operator double() const {
     return calculateArea();
 }
