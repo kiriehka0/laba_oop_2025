@@ -4,8 +4,28 @@ project(FiguresProject)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Create library from sources
-add_library(figures_lib
+# Включение директорий
+include_directories(include)
+
+# Основная программа
+add_executable(figures_project
+    src/Figure.cpp
+    src/Triangle.cpp
+    src/Square.cpp
+    src/Rectangle.cpp
+    src/Array.cpp
+    src/main.cpp
+)
+
+# Флаги компилятора
+target_compile_options(figures_project PRIVATE -Wall -Wextra -Wpedantic)
+
+# Тесты
+enable_testing()
+
+# Исполняемый файл для тестов
+add_executable(test_figures
+    tests/test_figures.cpp
     src/Figure.cpp
     src/Triangle.cpp
     src/Square.cpp
@@ -13,23 +33,21 @@ add_library(figures_lib
     src/Array.cpp
 )
 
-# Include directories for library
-target_include_directories(figures_lib PUBLIC include)
+# Поиск и подключение GTest
+find_package(GTest)
+if(GTest_FOUND)
+    include_directories(${GTEST_INCLUDE_DIRS})
+    target_link_libraries(test_figures ${GTEST_LIBRARIES} pthread)
+    message(STATUS "GTest found and linked")
+else()
+    # Попробовать найти вручную
+    find_library(GTEST_LIB gtest)
+    if(GTEST_LIB)
+        target_link_libraries(test_figures ${GTEST_LIB} pthread)
+        message(STATUS "GTest library found manually")
+    else()
+        message(FATAL_ERROR "GTest not found! Install with: sudo apt-get install libgtest-dev")
+    endif()
+endif()
 
-# Create executable
-add_executable(figures_project src/main.cpp)
-
-# Link library to executable
-target_link_libraries(figures_project figures_lib)
-
-# Compiler flags
-target_compile_options(figures_project PRIVATE -Wall -Wextra -Wpedantic)
-target_compile_options(figures_lib PRIVATE -Wall -Wextra -Wpedantic)
-
-# Tests
-enable_testing()
-
-add_executable(tests tests/test_figures.cpp)
-target_link_libraries(tests figures_lib GTest::GTest GTest::Main)
-
-add_test(NAME FiguresTests COMMAND tests)
+add_test(NAME FiguresTests COMMAND test_figures)
