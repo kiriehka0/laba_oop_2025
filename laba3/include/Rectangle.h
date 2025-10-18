@@ -10,6 +10,7 @@ private:
     
 public:
     Rectangle();
+    Rectangle(double width, double height);  // Конструктор только с размерами
     Rectangle(const Point& center, double width, double height);
     Rectangle(const Point& bottomLeft, double width, double height);
     Rectangle(const std::vector<Point>& vertices);
