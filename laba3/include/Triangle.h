@@ -37,6 +37,7 @@ public:
     // Геттеры
     const std::vector<Point>& getVertices() const { return vertices; }
     bool isEquilateral() const;
+    bool operator==(const Figure& other) const override;
     
 private:
     void validateTriangle() const;
