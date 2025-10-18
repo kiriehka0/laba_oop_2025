@@ -33,6 +33,7 @@ public:
     
     double getWidth() const;
     double getHeight() const;
+    bool operator==(const Figure& other) const override;
     
 private:
     void validateRectangle() const;
