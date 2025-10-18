@@ -4,49 +4,32 @@ project(FiguresProject)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Include directories - ДОБАВИТЬ ЭТИ СТРОКИ
-include_directories(include)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
-
-# Source files
-set(SOURCES
+# Create library from sources
+add_library(figures_lib
     src/Figure.cpp
     src/Triangle.cpp
     src/Square.cpp
     src/Rectangle.cpp
     src/Array.cpp
-    src/main.cpp
 )
 
+# Include directories for library
+target_include_directories(figures_lib PUBLIC include)
+
 # Create executable
-add_executable(figures_project ${SOURCES})
+add_executable(figures_project src/main.cpp)
+
+# Link library to executable
+target_link_libraries(figures_project figures_lib)
 
 # Compiler flags
 target_compile_options(figures_project PRIVATE -Wall -Wextra -Wpedantic)
-
-# Include directories for target - ДОБАВИТЬ ЭТУ СТРОКУ
-target_include_directories(figures_project PRIVATE include)
+target_compile_options(figures_lib PRIVATE -Wall -Wextra -Wpedantic)
 
 # Tests
 enable_testing()
 
-set(TEST_SOURCES
-    tests/test_figures.cpp
-    src/Figure.cpp
-    src/Triangle.cpp
-    src/Square.cpp
-    src/Rectangle.cpp
-    src/Array.cpp
-)
-
-add_executable(tests ${TEST_SOURCES})
-target_compile_options(tests PRIVATE -Wall -Wextra -Wpedantic)
-
-# Include directories for tests - ДОБАВИТЬ ЭТУ СТРОКУ
-target_include_directories(tests PRIVATE include)
-
-# Find GTest
-find_package(GTest REQUIRED)
-target_link_libraries(tests GTest::GTest GTest::Main)
+add_executable(tests tests/test_figures.cpp)
+target_link_libraries(tests figures_lib GTest::GTest GTest::Main)
 
 add_test(NAME FiguresTests COMMAND tests)
