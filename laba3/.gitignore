@@ -1,0 +1,76 @@
+# Build directories
+build/
+out/
+bin/
+*.exe
+*.out
+*.app
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+*.cmake
+!CMakeLists.txt
+CMakeUserPresets.json
+/.cmake/
+
+# Compilation outputs
+*.o
+*.a
+*.so
+*.dylib
+*.dll
+*.obj
+*.lib
+
+# Debug files
+*.pdb
+*.idb
+*.ilk
+*.exp
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Coverage reports
+*.gcno
+*.gcda
+*.gcov
+coverage/
+*.lcov
+
+# Documentation
+docs/_build/
+doxygen/
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# Package files
+*.deb
+*.rpm
+*.tar.gz
+*.zip
+
+# Test outputs
+test_results.xml
+*.test
