@@ -1,4 +1,3 @@
-
 #ifndef SQUARE_H
 #define SQUARE_H
 
@@ -12,7 +11,8 @@ private:
 public:
     Square();
     Square(const Point& center, double side);
-    Square(const Point& bottomLeft, double side);
+    Square(double side);  // Конструктор только со стороной
+    Square(const Point& bottomLeft, double width, double height);  // Добавим параметр height чтобы отличать
     Square(const std::vector<Point>& vertices);
     
     Square(const Square& other);
