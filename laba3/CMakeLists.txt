@@ -5,8 +5,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Явное указание путей включения
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+include_directories(${CMAKE_SOURCE_DIR}/include)
 
 # Основная программа
 add_executable(figures_project
@@ -16,11 +15,6 @@ add_executable(figures_project
     src/Rectangle.cpp
     src/Array.cpp
     src/main.cpp
-)
-
-# Явное указание путей включения для цели
-target_include_directories(figures_project PRIVATE 
-    ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
 target_compile_options(figures_project PRIVATE -Wall -Wextra -Wpedantic)
@@ -35,10 +29,6 @@ add_executable(test_figures
     src/Square.cpp
     src/Rectangle.cpp
     src/Array.cpp
-)
-
-target_include_directories(test_figures PRIVATE 
-    ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
 # GTest
