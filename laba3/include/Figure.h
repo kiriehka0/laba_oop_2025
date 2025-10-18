@@ -37,6 +37,7 @@ public:
         os << "Center: (" << center.x << ", " << center.y << "), ";
         os << "Area: " << calculateArea();
     }
+    virtual bool operator==(const Figure& other) const = 0;
 };
 
 // Перегрузка операторов как требуется в ТЗ
