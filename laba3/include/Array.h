@@ -38,6 +38,7 @@ public:
     bool equals(const Array& other) const;
     bool lessThan(const Array& other) const;
     bool greaterThan(const Array& other) const;
+    bool operator==(const Array& other) const;
 };
 
 #endif
