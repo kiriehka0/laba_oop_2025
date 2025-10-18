@@ -33,18 +33,19 @@ Rectangle::Rectangle(const Point& center, double width, double height) {
     };
 }
 
-Rectangle::Rectangle(const Point& bottomLeft, double width, double height) {
-    if (width <= 0 || height <= 0) {
-        throw std::invalid_argument("Width and height must be positive");
-    }
-    
-    vertices = {
-        bottomLeft,
-        Point(bottomLeft.x + width, bottomLeft.y),
-        Point(bottomLeft.x + width, bottomLeft.y + height),
-        Point(bottomLeft.x, bottomLeft.y + height)
-    };
-}
+// УДАЛЯЕМ КОНФЛИКТУЮЩИЙ КОНСТРУКТОР
+// Rectangle::Rectangle(const Point& bottomLeft, double width, double height) {
+//     if (width <= 0 || height <= 0) {
+//         throw std::invalid_argument("Width and height must be positive");
+//     }
+//     
+//     vertices = {
+//         bottomLeft,
+//         Point(bottomLeft.x + width, bottomLeft.y),
+//         Point(bottomLeft.x + width, bottomLeft.y + height),
+//         Point(bottomLeft.x, bottomLeft.y + height)
+//     };
+// }
 
 Rectangle::Rectangle(const std::vector<Point>& vertices) : vertices(vertices) {
     if (vertices.size() != 4) {
