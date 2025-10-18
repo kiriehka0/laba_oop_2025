@@ -10,9 +10,10 @@ private:
     
 public:
     Rectangle();
-    Rectangle(double width, double height);  // Конструктор только с размерами
+    Rectangle(double width, double height);
     Rectangle(const Point& center, double width, double height);
-    Rectangle(const Point& bottomLeft, double width, double height);
+    // Убираем один из конфликтующих конструкторов
+    // Rectangle(const Point& bottomLeft, double width, double height); // УДАЛЯЕМ ЭТУ СТРОКУ
     Rectangle(const std::vector<Point>& vertices);
     
     Rectangle(const Rectangle& other);
