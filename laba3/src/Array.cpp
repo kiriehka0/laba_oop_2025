@@ -110,6 +110,17 @@ bool Array::equals(const Array& other) const {
     return true;
 }
 
+bool Array::operator==(const Array& other) const {
+    if (figures.size() != other.figures.size()) return false;
+    
+    for (size_t i = 0; i < figures.size(); ++i) {
+        if (!(*figures[i] == *other.figures[i])) {
+            return false;
+        }
+    }
+    return true;
+}
+
 bool Array::lessThan(const Array& other) const {
     return this->totalArea() < other.totalArea();
 }
