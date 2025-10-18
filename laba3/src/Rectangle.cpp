@@ -166,3 +166,15 @@ Rectangle& Rectangle::operator=(Rectangle&& other) noexcept {
     }
     return *this;
 }
+// ДОБАВИТЬ В КОНЕЦ ФАЙЛА:
+bool Rectangle::operator==(const Figure& other) const {
+    const Rectangle* otherRect = dynamic_cast<const Rectangle*>(&other);
+    if (!otherRect) return false;
+    
+    for (size_t i = 0; i < vertices.size(); ++i) {
+        if (!(vertices[i] == otherRect->vertices[i])) {
+            return false;
+        }
+    }
+    return true;
+}
