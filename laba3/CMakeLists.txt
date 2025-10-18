@@ -1,13 +1,14 @@
 cmake_minimum_required(VERSION 3.10)
-project(laba3)  # Явно указываем имя
+project(laba3)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-include_directories(include)
+# Принудительно устанавливаем флаги компилятора с путями
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -I${CMAKE_SOURCE_DIR}/include")
 
 # Основная программа
-add_executable(laba3  # То же имя что и проект
+add_executable(laba3
     src/Figure.cpp
     src/Triangle.cpp
     src/Square.cpp
@@ -16,6 +17,8 @@ add_executable(laba3  # То же имя что и проект
     src/main.cpp
 )
 
+# Явное указание путей включения
+target_include_directories(laba3 PRIVATE ${CMAKE_SOURCE_DIR}/include)
 target_compile_options(laba3 PRIVATE -Wall -Wextra -Wpedantic)
 
 # Тесты
@@ -29,6 +32,8 @@ add_executable(tests
     src/Rectangle.cpp
     src/Array.cpp
 )
+
+target_include_directories(tests PRIVATE ${CMAKE_SOURCE_DIR}/include)
 
 # GTest
 find_package(GTest REQUIRED)
